@@ -16,10 +16,10 @@ private:
 
 public:
     explicit Persoana(string Prenume, string Nume, string Adresa) {
-        prenume = Prenume;
-        nume = Nume;
-        adresa = Adresa;
-        id = ++lastID;
+        this->prenume = Prenume;
+        this->nume = Nume;
+        this->adresa = Adresa;
+        this->id = ++lastID;
     }
 
     string getPrenume() const {
@@ -55,8 +55,8 @@ private:
 
 public:
     explicit Cont(int NumarCont, double soldInitial){
-        numarCont = NumarCont;
-        sold = soldInitial;
+        this->numarCont = NumarCont;
+        this->sold = soldInitial;
     }
 
     int getNumarCont() const {
@@ -115,7 +115,7 @@ private:
 
 public:
     explicit Banca(string numeBanca){
-        nume = numeBanca;
+        this->nume = numeBanca;
     }
 
     void creazaCont(const Persoana& persoana, double soldInitial) {
