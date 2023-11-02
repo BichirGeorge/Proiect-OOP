@@ -30,14 +30,6 @@ public:
         return nume;
     }
 
-    string getAdresa() const {
-        return adresa;
-    }
-
-    int getID() const {
-        return id;
-    }
-
     friend ostream& operator<<(ostream& out, const Persoana& persoana) {
         out << "Nume: " << persoana.prenume << " " << persoana.nume << "\n";
         out << "Adresa: " << persoana.adresa << "\n";
@@ -180,7 +172,7 @@ int main() {
         cout << "3. Retragere bani\n";
         cout << "0. Iesire\n";
 
-        int optiune;
+        int optiune=0;
         cout << "Introdu optiunea: ";
         cin >> optiune;
 
