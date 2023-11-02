@@ -30,14 +30,6 @@ public:
         return nume;
     }
 
-    string getAdresa() const {
-        return adresa;
-    }
-
-    int getID() const {
-        return id;
-    }
-
     friend ostream& operator<<(ostream& out, const Persoana& persoana) {
         out << "Nume: " << persoana.prenume << " " << persoana.nume << "\n";
         out << "Adresa: " << persoana.adresa << "\n";
