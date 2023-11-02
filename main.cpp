@@ -15,7 +15,7 @@ private:
     static int lastID;
 
 public:
-    explicit Persoana(string Prenume, string Nume, string Adresa) {
+    explicit Persoana(const string Prenume, const string Nume, const string Adresa) {
         this->prenume = Prenume;
         this->nume = Nume;
         this->adresa = Adresa;
@@ -54,7 +54,7 @@ private:
     double sold;
 
 public:
-    explicit Cont(int NumarCont, double soldInitial){
+    explicit Cont(const int NumarCont, const double soldInitial){
         this->numarCont = NumarCont;
         this->sold = soldInitial;
     }
@@ -114,7 +114,7 @@ private:
     vector<Cont> conturi;
 
 public:
-    explicit Banca(string numeBanca){
+    explicit Banca(const string numeBanca){
         this->nume = numeBanca;
     }
 
