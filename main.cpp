@@ -15,11 +15,9 @@ private:
     static int lastID;
 
 public:
-    explicit Persoana(const string Prenume, const string Nume, const string Adresa) {
-        this->prenume = Prenume;
-        this->nume = Nume;
-        this->adresa = Adresa;
-        this->id = ++lastID;
+    explicit Persoana(const string& Prenume, const string& Nume, const string& Adresa)
+            : prenume(Prenume), nume(Nume), adresa(Adresa) {
+        id = ++lastID;
     }
 
     string getPrenume() const {
@@ -54,9 +52,8 @@ private:
     double sold;
 
 public:
-    explicit Cont(const int NumarCont, const double soldInitial){
-        this->numarCont = NumarCont;
-        this->sold = soldInitial;
+    explicit Cont(int NumarCont, double soldInitial)
+            : numarCont(NumarCont), sold(soldInitial) {
     }
 
     int getNumarCont() const {
@@ -114,8 +111,8 @@ private:
     vector<Cont> conturi;
 
 public:
-    explicit Banca(const string numeBanca){
-        this->nume = numeBanca;
+    explicit Banca(const string& numeBanca)
+            : nume(numeBanca) {
     }
 
     void creazaCont(const Persoana& persoana, double soldInitial) {
@@ -154,7 +151,6 @@ public:
     }
 };
 
-
 int main() {
     Banca MazeBank("Maze Bank");
     Persoana client1("George", "Ionut", "Str. Acadelelor, Nr. 96");
@@ -173,7 +169,7 @@ int main() {
         cout << "3. Retragere bani\n";
         cout << "0. Iesire\n";
 
-        int optiune=0;
+        int optiune = 0;
         cout << "Introdu optiunea: ";
         cin >> optiune;
 
