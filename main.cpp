@@ -172,11 +172,11 @@ int main() {
         cout << "3. Retragere bani\n";
         cout << "0. Iesire\n";
 
-        int optiune;
+        int optiune = -1;
         cout << "Introdu optiunea: ";
         cin >> optiune;
 
-        switch (optiune) {
+        switch (optiune != 0) {
             case 1:
                 MazeBank.afiseazaToateConturile();
                 break;
