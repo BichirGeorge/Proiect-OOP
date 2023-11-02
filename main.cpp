@@ -154,6 +154,7 @@ public:
     }
 };
 
+
 int main() {
     Banca MazeBank("Maze Bank");
     Persoana client1("George", "Ionut", "Str. Acadelelor, Nr. 96");
