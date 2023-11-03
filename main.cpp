@@ -19,6 +19,21 @@ public:
             : prenume(Prenume), nume(Nume), adresa(Adresa) {
         id = ++lastID;
     }
+    ///constructor de copiere
+    Persoana(const Persoana& copie){
+        this->prenume = copie.prenume;
+        this->nume = copie.nume;
+        this->adresa = copie.adresa;
+        this->id = copie.id;
+    }
+    ///operator= de copiere
+    Persoana& operator=(const Persoana& copie){
+        this->prenume = copie.prenume;
+        this->nume = copie.nume;
+        this->adresa = copie.adresa;
+        this->id = copie.id;
+        return *this;
+    }
 
     string getPrenume() const {
         return prenume;
