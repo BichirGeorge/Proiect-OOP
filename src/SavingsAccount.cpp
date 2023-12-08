@@ -24,7 +24,7 @@ void SavingsAccount::displayInfo() const {
     std::cout << "Interest Rate: " << interestRate << "%\n";
 }
 
-SavingsAccount* SavingsAccount::clone() const {
+[[maybe_unused]]SavingsAccount* SavingsAccount::clone() const {
     return new SavingsAccount(*this);
 }
 

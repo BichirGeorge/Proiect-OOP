@@ -12,7 +12,7 @@ void CreditAccount::performOperation() const {
     std::cout << "----\n";
 }
 
-void CreditAccount::useCredit(double amount) {
+[[maybe_unused]]void CreditAccount::useCredit(double amount) {
     if (amount < 0) {
         throw NegativeAmountException("Credit usage amount must be non-negative.");
     }
