@@ -14,11 +14,11 @@ private:
 public:
     CheckingAccount(int accountNumber, double balance, double overdraftLimit);
 
-    void performOperation() const override;
+    //void performOperation() const override;
     void displayInfo() const override;
 
 
-    CheckingAccount* clone() const override;
+    //CheckingAccount* clone() const override;
 
     ~CheckingAccount();
 };

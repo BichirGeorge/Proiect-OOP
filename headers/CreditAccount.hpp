@@ -16,12 +16,12 @@ private:
 public:
     CreditAccount(int accountNumber, double balance, double creditLimit);
 
-    void performOperation() const override;
+    //void performOperation() const override;
     void displayInfo() const override;
 
-    void useCredit(double amount);
+    //void useCredit(double amount);
 
-    CreditAccount* clone() const override;
+    //CreditAccount* clone() const override;
 
     ~CreditAccount();
 };

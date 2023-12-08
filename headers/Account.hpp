@@ -18,7 +18,7 @@ private:
 public:
     Account(int accountNumber, double balance);
 
-    virtual void performOperation() const = 0;
+    //virtual void performOperation() const = 0;
     virtual void displayInfo() const = 0;
 
     int getAccountNumber() const;
@@ -31,7 +31,7 @@ public:
     void deposit(double amount);
     void withdraw(double amount);
 
-    virtual Account* clone() const = 0;
+    //virtual Account* clone() const = 0;
 };
 
 

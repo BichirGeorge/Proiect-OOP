@@ -8,14 +8,14 @@ SavingsAccount::SavingsAccount(int accountNumber, double balance, double interes
         : Account(accountNumber, balance), interestRate(interestRate) {
 }
 
-void SavingsAccount::performOperation() const {
-    std::cout << "----\n";
-}
+//void SavingsAccount::performOperation() const {
+//    std::cout << "----\n";
+//}
 
-void SavingsAccount::calculateInterest() {
-    double interest = getBalance() * interestRate / 100.0;
-    deposit(interest);
-}
+//void SavingsAccount::calculateInterest() {
+//    double interest = getBalance() * interestRate / 100.0;
+//    deposit(interest);
+//}
 
 void SavingsAccount::displayInfo() const {
     std::cout << "Savings Account Information\n";
@@ -24,8 +24,8 @@ void SavingsAccount::displayInfo() const {
     std::cout << "Interest Rate: " << interestRate << "%\n";
 }
 
-[[maybe_unused]]SavingsAccount* SavingsAccount::clone() const {
-    return new SavingsAccount(*this);
-}
+//SavingsAccount* SavingsAccount::clone() const {
+//    return new SavingsAccount(*this);
+//}
 
 SavingsAccount::~SavingsAccount() = default;

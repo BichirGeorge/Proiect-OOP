@@ -15,12 +15,12 @@ private:
 public:
     SavingsAccount(int accountNumber, double balance, double interestRate);
 
-    void performOperation() const override;
+    //void performOperation() const override;
     void displayInfo() const override;
 
-    void calculateInterest();
+    //void calculateInterest();
 
-    SavingsAccount* clone() const override;
+    //SavingsAccount* clone() const override;
 
     ~SavingsAccount();
 };

@@ -20,7 +20,7 @@ private:
     std::vector<std::unique_ptr<Account>> accounts;
 
 public:
-    Bank(const std::string& name);
+    explicit Bank(const std::string& name);
 
     void createSavingsAccount(const Person& person, double balance, double interestRate);
     void createCheckingAccount(const Person& person, double balance, double overdraftLimit);

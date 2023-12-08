@@ -8,9 +8,9 @@ CheckingAccount::CheckingAccount(int accountNumber, double balance, double overd
         : Account(accountNumber, balance), overdraftLimit(overdraftLimit) {
 }
 
-[[maybe_unused]]void CheckingAccount::performOperation() const {
-    std::cout << "----\n";
-}
+//void CheckingAccount::performOperation() const {
+//    std::cout << "----\n";
+//}
 
 
 void CheckingAccount::displayInfo() const {
@@ -20,8 +20,8 @@ void CheckingAccount::displayInfo() const {
     std::cout << "Overdraft Limit: " << overdraftLimit << "\n";
 }
 
-[[maybe_unused]]CheckingAccount* CheckingAccount::clone() const {
-    return new CheckingAccount(*this);
-}
+//CheckingAccount* CheckingAccount::clone() const {
+//    return new CheckingAccount(*this);
+//}
 
 CheckingAccount::~CheckingAccount() = default;
