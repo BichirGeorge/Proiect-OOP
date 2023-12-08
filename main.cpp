@@ -1,221 +1,85 @@
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-
-using namespace std;
-
-class Persoana {
-private:
-    string prenume;
-    string nume;
-    string adresa;
-    int id;
-
-    static int lastID;
-
-public:
-    explicit Persoana(const string& Prenume, const string& Nume, const string& Adresa)
-            : prenume(Prenume), nume(Nume), adresa(Adresa) {
-        id = ++lastID;
-    }
-    ///constructor de copiere
-    Persoana(const Persoana& copie){
-        this->prenume = copie.prenume;
-        this->nume = copie.nume;
-        this->adresa = copie.adresa;
-        this->id = copie.id;
-    }
-    ///operator= de copiere
-    Persoana& operator=(const Persoana& copie){
-        this->prenume = copie.prenume;
-        this->nume = copie.nume;
-        this->adresa = copie.adresa;
-        this->id = copie.id;
-        return *this;
-    }
-
-    string getPrenume() const {
-        return prenume;
-    }
-
-    string getNume() const {
-        return nume;
-    }
-
-    friend ostream& operator<<(ostream& out, const Persoana& persoana) {
-        out << "Nume: " << persoana.prenume << " " << persoana.nume << "\n";
-        out << "Adresa: " << persoana.adresa << "\n";
-        out << "ID: " << persoana.id << "\n";
-        return out;
-    }
-
-    friend istream& operator>>(istream& in, Persoana& persoana) {
-        in >> persoana.prenume;
-        in >> persoana.nume;
-        in >> persoana.adresa;
-        in >> persoana.id;
-        return in;
-    }
-};
-
-int Persoana::lastID = 0;
-
-class Cont {
-private:
-    int numarCont;
-    double sold;
-
-public:
-    explicit Cont(int NumarCont, double soldInitial)
-            : numarCont(NumarCont), sold(soldInitial) {
-    }
-
-    int getNumarCont() const {
-        return numarCont;
-    }
-
-    double getSold() const {
-        return sold;
-    }
-
-    void depoziteaza(double suma) {
-        sold += suma;
-        inregistreazaTranzactie(suma, "Depunere");
-    }
-
-    void retrage(double suma) {
-        if (sold >= suma) {
-            sold -= suma;
-            inregistreazaTranzactie(suma, "Retragere");
-        } else {
-            cout << "Fonduri insuficiente!\n";
-        }
-    }
-
-    void inregistreazaTranzactie(double suma, const string& tip) const {
-        ofstream fisier("tranzactii.txt", ofstream::app);
-        if (fisier.is_open()) {
-            fisier << "Tip: " << tip << "\n";
-            fisier << "Suma: " << suma << "\n";
-            fisier << "Numar cont: " << numarCont << "\n";
-            fisier << "--------------------------\n";
-            fisier.close();
-        } else {
-            cout << "Nu am putut deschide fisierul de tranzactii.\n";
-        }
-    }
-
-    friend ostream& operator<<(ostream& out, const Cont& cont) {
-        out << "Soldul contului " << cont.numarCont << ": " << cont.sold << "\n";
-        return out;
-    }
-
-    friend istream& operator>>(istream& in, Cont& cont) {
-        in >> cont.numarCont;
-        double soldInitial;
-        in >> soldInitial;
-        cont = Cont(cont.numarCont, soldInitial);
-        return in;
-    }
-};
-
-class Banca {
-private:
-    string nume;
-    vector<Cont> conturi;
-
-public:
-    explicit Banca(const string& numeBanca)
-            : nume(numeBanca) {
-    }
-
-    void creazaCont(const Persoana& persoana, double soldInitial) {
-        Cont contNou(conturi.size() + 1, soldInitial);
-        conturi.push_back(contNou);
-        cout << "Cont creat cu succes pentru " << persoana.getPrenume() << " " << persoana.getNume() << "!\n";
-    }
-
-    void afiseazaToateConturile() const {
-        cout << "Conturile bancii " << nume << ":\n";
-        for (const Cont& cont : conturi) {
-            cout << "Numar cont: " << cont.getNumarCont() << "\n";
-            cout << "Soldul contului " << cont.getNumarCont() << ": " << cont.getSold() << "\n";
-            cout << "--------------------------\n";
-        }
-    }
-
-    void depoziteaza(int numarCont, double suma) {
-        for (Cont& cont : conturi) {
-            if (cont.getNumarCont() == numarCont) {
-                cont.depoziteaza(suma);
-                return;
-            }
-        }
-        cout << "Contul nu a fost gasit.\n";
-    }
-
-    void retrage(int numarCont, double suma) {
-        for (Cont& cont : conturi) {
-            if (cont.getNumarCont() == numarCont) {
-                cont.retrage(suma);
-                return;
-            }
-        }
-        cout << "Contul nu a fost gasit.\n";
-    }
-};
-
+#include "headers/Person.hpp"
+#include "headers/Account.hpp"
+#include "headers/CheckingAccount.hpp"
+#include "headers/SavingsAccount.hpp"
+#include "headers/CreditAccount.hpp"
+#include "headers/Bank.hpp"
+#include "headers/Exception.hpp"
 
 int main() {
-    Banca MazeBank("Maze Bank");
-    Persoana client1("George", "Ionut", "Str. Acadelelor, Nr. 96");
-    Persoana clientcopie(client1);
-    Persoana client3("Snoop", "Dogg", "Str. Pizza, Nr. 96");
-    clientcopie = client3;
+    try {
+        Bank MazeBank("Maze Bank");
+        Person client1("George", "Ionut", "Str. Acadelelor, Nr. 96");
+        Person client2("Justin", "Bieber", "Str. Acadelelor, Nr. 96");
+        Person client3("Barack", "Obama", "Str. Acadelelor, Nr. 96");
+        Person client4("Donald", "Trump", "Str. Acadelelor, Nr. 96");
 
-    MazeBank.creazaCont(client1, 1000.0);
-    MazeBank.creazaCont(clientcopie, 1000);
-    MazeBank.creazaCont(client3, 2000.0);
+        MazeBank.createSavingsAccount(client1, 1000.0, 3.0);
+        MazeBank.createSavingsAccount(client4, 3000.0, 3.0);
+        MazeBank.createCheckingAccount(client2, 2000.0, 500.0);
+        MazeBank.createCreditAccount(client3, 1500.0, 2000.0);
+        SavingsAccount::displayTotalAccounts();
+        int option;
 
-    while (true) {
-        cout << "\n\n\nMeniu:\n";
-        cout << "1. Afiseaza toate conturile\n";
-        cout << "2. Depunere bani\n";
-        cout << "3. Retragere bani\n";
-        cout << "0. Iesire\n";
+        do {
+            std::cout << "\n\nMenu:\n";
+            std::cout << "1. Display all accounts\n";
+            std::cout << "2. Deposit money\n";
+            std::cout << "3. Withdraw money\n";
+            std::cout << "4. Display account information\n";
+            std::cout << "0. Exit\n";
+            std::cout << "Enter your choice: ";
+            std::cin >> option;
 
-        int optiune = 0;
-        cout << "Introdu optiunea: ";
-        cin >> optiune;
+            switch (option) {
+                case 1:
+                    MazeBank.displayAllAccounts();
+                    break;
+                case 2:
+                    int accountNumber;
+                    double amount;
+                    std::cout << "Enter account number for deposit: ";
+                    std::cin >> accountNumber;
+                    std::cout << "Enter amount to deposit: ";
+                    std::cin >> amount;
 
-        switch (optiune) {
-            case 1:
-                MazeBank.afiseazaToateConturile();
-                break;
-            case 2:
-                int contDepozit;
-                double sumaDepozit;
-                cout << "Introduceti numarul contului pentru depunere: ";
-                cin >> contDepozit;
-                cout << "Introduceti suma depozitata: ";
-                cin >> sumaDepozit;
-                MazeBank.depoziteaza(contDepozit, sumaDepozit);
-                break;
-            case 3:
-                int contRetragere;
-                double sumaRetragere;
-                cout << "Introduceti numarul contului pentru retragere: ";
-                cin >> contRetragere;
-                cout << "Introduceti suma retrasa: ";
-                cin >> sumaRetragere;
-                MazeBank.retrage(contRetragere, sumaRetragere);
-                break;
-            case 0:
-                cout << "La revedere!";
-                return 0;
-            default:
-                cout << "Optiune invalida. Va rugam sa reintroduceti.\n";
-        }
+                    if (amount < 0) {
+                        throw NegativeAmountException("Deposit amount must be non-negative.");
+                    }
+
+                    MazeBank.deposit(accountNumber, amount);
+                    break;
+                case 3:
+                    std::cout << "Enter account number for withdrawal: ";
+                    std::cin >> accountNumber;
+                    std::cout << "Enter amount to withdraw: ";
+                    std::cin >> amount;
+
+                    if (amount < 0) {
+                        throw NegativeAmountException("Withdrawal amount must be non-negative.");
+                    }
+
+
+                    MazeBank.withdraw(accountNumber, amount);
+                    break;
+                case 4:
+                    int accountNumberInfo;
+                    std::cout << "Enter account number for information: ";
+                    std::cin >> accountNumberInfo;
+
+                    MazeBank.displayAccountInfo(accountNumberInfo);
+                    break;
+                case 0:
+                    std::cout << "Goodbye!\n";
+                    break;
+                default:
+                    std::cout << "Invalid option. Please try again.\n";
+            }
+        } while (option != 0);
+    } catch (const std::exception& e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
+
+    return 0;
 }
