@@ -27,9 +27,9 @@ int Account::totalAccounts = 0;
 void Account::displayTotalAccounts(){
     std::cout << "Total number of accounts: " << totalAccounts << "\n";
 }
-[[maybe_unused]]int Account::getTotalAccounts(){
-    return totalAccounts;
-}
+//int Account::getTotalAccounts(){
+//    return totalAccounts;
+//}
 
 void Account::incrementTotalAccounts(){
     totalAccounts++;

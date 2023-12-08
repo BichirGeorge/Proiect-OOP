@@ -25,7 +25,7 @@ public:
     double getBalance() const;
 
     static void displayTotalAccounts();
-    static int getTotalAccounts();
+    //static int getTotalAccounts();
     static void incrementTotalAccounts();
 
     void deposit(double amount);
