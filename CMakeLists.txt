@@ -91,20 +91,17 @@ endfunction()
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
 add_executable(${PROJECT_NAME} main.cpp
-        src/Account.cpp
-        headers/Account.hpp
-        src/Person.cpp
-        headers/Person.hpp
-        src/CheckingAccount.cpp
-        headers/CheckingAccount.hpp
-        src/SavingsAccount.cpp
-        headers/SavingsAccount.hpp
-        src/CreditAccount.cpp
-        headers/CreditAccount.hpp
         src/Bank.cpp
         headers/Bank.hpp
-        src/Exception.cpp
-        headers/Exception.hpp)
+        src/Account.cpp
+        headers/Account.hpp
+        src/SavingsAccount.cpp
+        headers/SavingsAccount.hpp
+        src/CurrentAccount.cpp
+        headers/CurrentAccount.hpp
+        src/BankSystem.cpp
+        headers/BankSystem.hpp
+)
 
 ###############################################################################
 

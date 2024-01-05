@@ -1,14 +1,17 @@
-//
-// Created by George on 1/5/2024.
-//
-
 #ifndef OOP_SAVINGSACCOUNT_HPP
 #define OOP_SAVINGSACCOUNT_HPP
 
+#include "Account.hpp"
 
-class SavingsAccount {
-
+class SavingsAccount: public Account {
+public:
+    //Constructorul clasei SavingsAccount
+    SavingsAccount(const std::string & accountNumber, double balance, Bank * bank);
+    // Destructorul clasei SavingsAccount
+    ~SavingsAccount() override;
+    //Aplica dobanda pentru SavingsAccount
+    void update() override;
+    Account * clone() const override;
 };
-
 
 #endif //OOP_SAVINGSACCOUNT_HPP

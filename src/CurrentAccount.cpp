@@ -1,5 +1,12 @@
-//
-// Created by George on 1/5/2024.
-//
+#include "../headers/CurrentAccount.hpp"
 
-#include "CurrentAccount.hpp"
+
+CurrentAccount::CurrentAccount(const std::string & accountNumber, double balance, Bank * bank): Account(accountNumber, balance, bank) {}
+
+void CurrentAccount::update() {
+    std::cout << "Current Account updated.\n";
+}
+
+Account * CurrentAccount::clone() const {
+    return new CurrentAccount( * this);
+}
