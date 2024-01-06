@@ -11,7 +11,7 @@ public:
     // Constructor
     Transaction(const std::string& accountNumber, T amount, bool isDeposit);
 
-    // Display transaction details
+    // Afiseaza detaliile tranzactiei
     void displayTransaction() const;
 
 private:
