@@ -8,15 +8,15 @@ const std::string & Account::getAccountNumber() const {
     return accountNumber;
 }
 
-double Account::getBalance() const {
+[[maybe_unused]] double Account::getBalance() const {
     return balance;
 }
 
-void Account::deposit(double amount) {
+[[maybe_unused]] void Account::deposit(double amount) {
     balance += amount;
 }
 
-void Account::withdraw(double amount) {
+[[maybe_unused]] void Account::withdraw(double amount) {
     if (amount <= balance) {
         balance -= amount;
     } else {
@@ -40,7 +40,7 @@ void Account::unsubscribe() {
     subscribed = false;
 }
 
-void Account::notify() {
+[[maybe_unused]] void Account::notify() {
     if (subscribed) {
         update();
     }

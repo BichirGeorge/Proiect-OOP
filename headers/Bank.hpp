@@ -10,7 +10,7 @@
 class Bank {
 public:
     //Constructor clasa bank
-    Bank(const std::string & name);
+    explicit Bank(const std::string & name);
     //Destructor clasa bank
     ~Bank();
     //Adauga un cont

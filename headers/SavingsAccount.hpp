@@ -10,7 +10,7 @@ public:
     // Destructorul clasei SavingsAccount
     ~SavingsAccount() override;
     void update() override;
-    Account * clone() const override;
+    [[nodiscard]] Account * clone() const override;
 };
 
 #endif //OOP_SAVINGSACCOUNT_HPP

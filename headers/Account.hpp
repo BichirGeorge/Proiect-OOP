@@ -20,11 +20,11 @@ public:
 
     const std::string & getAccountNumber() const;
     //Obtine balanta contului
-    double getBalance() const;
+    [[maybe_unused]] double getBalance() const;
     //Depoziteaza bani in cont
-    void deposit(double amount);
+    [[maybe_unused]] void deposit(double amount);
     //Retrage bani din cont
-    void withdraw(double amount);
+    [[maybe_unused]] void withdraw(double amount);
 
     Account & operator = (const Account & other);
     friend std::ostream & operator << (std::ostream & os,
@@ -36,7 +36,7 @@ public:
     void unsubscribe();
 
     // Metoda pentru a notifica contul despre un eveniment
-    void notify();
+    [[maybe_unused]] void notify();
 
     bool isSubscribed() const;
 
