@@ -9,7 +9,6 @@ public:
     SavingsAccount(const std::string & accountNumber, double balance, Bank * bank);
     // Destructorul clasei SavingsAccount
     ~SavingsAccount() override;
-    //Aplica dobanda pentru SavingsAccount
     void update() override;
     Account * clone() const override;
 };

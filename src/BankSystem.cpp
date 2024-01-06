@@ -1,8 +1,8 @@
 #include "../headers/BankSystem.hpp"
 
-#include "../headers/SavingsAccount.hpp"
+#include "../headers/AccountFactory.hpp"
 
-#include "../headers/CurrentAccount.hpp"
+#include "../headers/Transaction.hpp"
 
 #include <iostream>
 
@@ -41,8 +41,13 @@ void BankSystem::run() {
                 std::cout << "Enter initial balance: ";
                 std::cin >> balance;
 
-                SavingsAccount * savingsAccount = new SavingsAccount(accountNumber, balance, & bank);
+                // Creeaza savingsAccount
+                Account* savingsAccount = AccountFactory::createAccount(accountNumber, balance, &bank, "Savings");
                 bank.addAccount(savingsAccount);
+
+                // Depune o suma atunci cand se creeaza contul
+                Transaction<double> depositTransaction(accountNumber, balance, true);
+                depositTransaction.displayTransaction();
                 break;
             }
             case 2: {
@@ -53,8 +58,13 @@ void BankSystem::run() {
                 std::cout << "Enter initial balance: ";
                 std::cin >> balance;
 
-                CurrentAccount * currentAccount = new CurrentAccount(accountNumber, balance, & bank);
+                // Creeaza currentAccount
+                Account* currentAccount = AccountFactory::createAccount(accountNumber, balance, &bank, "Current");
                 bank.addAccount(currentAccount);
+
+                // Depune o suma atunci cand se creeaza contul
+                Transaction<double> depositTransaction(accountNumber, balance, true);
+                depositTransaction.displayTransaction();
                 break;
             }
             case 3:

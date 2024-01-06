@@ -101,6 +101,10 @@ add_executable(${PROJECT_NAME} main.cpp
         headers/CurrentAccount.hpp
         src/BankSystem.cpp
         headers/BankSystem.hpp
+        src/AccountFactory.cpp
+        headers/AccountFactory.hpp
+        src/Transaction.cpp
+        headers/Transaction.hpp
 )
 
 ###############################################################################
